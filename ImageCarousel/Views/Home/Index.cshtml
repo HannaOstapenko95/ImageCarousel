@@ -2,14 +2,13 @@
     ViewBag.Title = "Index";
 }
 
-
+@model ImageCarousel.Models.ImageModel
 
 <div>
     <div>
         @{
-            var data = ViewBag.Message;
-            
-            <img src="@data" width="1200" height="800" align ="middle"/>
+            string source = ImageCarousel.Models.ImageModel.randompath;
+            <img src="@source" width="100%" align ="middle"/>
         }
     </div>
 </div>

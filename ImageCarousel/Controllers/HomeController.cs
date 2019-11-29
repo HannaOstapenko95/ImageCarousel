@@ -9,21 +9,31 @@ namespace ImageCarousel.Controllers
 {
     public class HomeController : Controller
     {
-        //Returns random image path
+        /// <summary>
+        /// Return index (i.e. start page) of the website upon user request to fqdn of the service
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            Page p = new Page();
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(p.Server.MapPath("/images/"));
-            System.IO.DirectoryInfo dirFileUpload = fileInfo.Directory;
-            List<System.IO.FileInfo> possible = dirFileUpload.GetFiles().ToList();
-            Random rand = new Random();
-            string randompath = "";
-            int index = rand.Next(1, possible.Count);
-            randompath = Convert.ToString(@"\images\" + possible[index]);
-            ViewBag.Message = randompath;
-            possible.RemoveAt(index);
-
             return View();
+        }
+        /// <summary>
+        /// This method implements basic carousel algorithm of 'ImageCarousel' service
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRandomImageFullPath()
+        {
+            var page = new Page();
+            var fileInfo = new System.IO.FileInfo(page.Server.MapPath("/images/"));                  
+            List<System.IO.FileInfo> imagesToShow = fileInfo.Directory.GetFiles().ToList();
+            
+            Random rand = new Random();            
+            int index = rand.Next(1, imagesToShow.Count);
+            string selectedFqnOfRandomImage = Convert.ToString(@"\images\" + imagesToShow[index]);
+
+            imagesToShow.RemoveAt(index);
+
+            return selectedFqnOfRandomImage;
         }
     }
 }
