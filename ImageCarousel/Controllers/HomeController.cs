@@ -9,6 +9,7 @@ namespace ImageCarousel.Controllers
 {
     public class HomeController : Controller
     {
+        //Returns random image path
         public ActionResult Index()
         {
             Page p = new Page();
@@ -21,6 +22,7 @@ namespace ImageCarousel.Controllers
             randompath = Convert.ToString(@"\images\" + possible[index]);
             ViewBag.Message = randompath;
             possible.RemoveAt(index);
+
             return View();
         }
     }

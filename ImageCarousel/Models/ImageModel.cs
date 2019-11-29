@@ -5,11 +5,11 @@ using System.Web;
 
 namespace ImageCarousel.Models
 {
-    public class ImageModel
-    {
-        public static string randompath
-        {
-            get; set;
-        }
-    }
+    //public class ImageModel
+    //{
+    //    public static string randompath
+    //    {
+    //        get; set;
+    //    }
+    //}
 }
