@@ -10,7 +10,7 @@ namespace ImageCarousel.Models
     {
         public static string randompath
         {
-            get { return ImageCarousel.Controllers.HomeController.GetRandomImageFullPath(); }
+            get { return ImageCarousel.Controllers.HomeController.GetRandomImagePath(); }
             set { }
         }
     }

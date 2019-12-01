@@ -1,0 +1,120 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.UI;
+
+namespace ImageCarousel.Controllers
+{
+    public class HomeController : Controller
+    {
+        /// <summary>
+        /// Return index (i.e. start page) of the website upon user request to fqdn of the service
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
+            return View();
+        }
+        /// <summary>
+        /// This method implements basic carousel algorithm of 'ImageCarousel' service
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRandomImageFullPath()
+        {
+            var page = new Page();
+            var fileInfo = new System.IO.FileInfo(page.Server.MapPath("/images/"));                  
+            List<System.IO.FileInfo> imagesToShow = fileInfo.Directory.GetFiles().ToList();
+
+
+
+            //string filenames = Convert.ToString(imagesToShow);
+            string writePath = $"D:\\C\\ImageCarousel\\ImageCarousel\\ImageCarousel\\images.txt";
+            // string text = filenames;
+            //System.IO.FileInfo imageName;
+            StringBuilder sb = new StringBuilder();
+            if () {
+                for (int imageName = 0; imageName < imagesToShow.Count; imageName++) {
+                    using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+                    {
+                        string path = Path.GetFileName(@"\images\" + imagesToShow[imageName]);
+                        sw.WriteLine(sb.AppendLine(path));
+
+                    }
+                }
+            }
+            //string line = File.ReadLines(FileName).Skip(14).Take(1).First();
+            
+
+
+            Random rand = new Random();            
+            int index = rand.Next(1, imagesToShow.Count);
+            //new
+            string line1 = ReadSpecificLine(writePath, index+1);
+
+            //string selectedFqnOfRandomImage = Convert.ToString(@"\images\" + imagesToShow[index]);
+            string selectedFqnOfRandomImage = Convert.ToString(@"\images\" + line1);
+
+            imagesToShow.RemoveAt(index);
+            StringBuilder sb2 = new StringBuilder();
+            for (int imageName = 0; imageName < imagesToShow.Count; imageName++)
+            {
+                using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+                {
+                    string path = Path.GetFileName(@"\images\" + imagesToShow[imageName]);
+                    sw.WriteLine(sb2.AppendLine(path));
+
+                }
+            }
+
+            return selectedFqnOfRandomImage;
+        }
+        static string ReadSpecificLine(string filePath, int lineNumber)
+        {
+            string content = null;
+            try
+            {
+                using (StreamReader file = new StreamReader(filePath))
+                {
+                    for (int i = 1; i < lineNumber; i++)
+                    {
+                        file.ReadLine();
+
+                        if (file.EndOfStream)
+                        {
+                            Console.WriteLine($"End of file.  The file only contains {i} lines.");
+                            break;
+                        }
+                    }
+                    content = file.ReadLine();
+                }
+
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("There was an error reading the file: ");
+                Console.WriteLine(e.Message);
+            }
+
+            return content;
+
+        }
+        //private HttpGet()
+        //{
+        //    string filenames = Convert.ToString(txtbFileName.Text);
+        //    string writePath = $"C:\\SomeDir\\{filename}.txt";
+        //    if (Convert.ToString(txtbFileName.Text) != "")
+        //    {
+        //        string text = "Привет мир!\nПока мир... \n" + filename;
+        //        try
+        //        {
+        //            using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+        //            {
+        //                sw.WriteLine(text);
+        //            }
+        //        }
+    }
+}

@@ -4,11 +4,18 @@
 
 @model ImageCarousel.Models.ImageModel
 
+<style>
+    .pic {
+        text-align: center; /* Выравнивания картинки по центру в html */
+    }
+</style>
 <div>
     <div>
-        @{
-            string source = ImageCarousel.Models.ImageModel.randompath;
-            <img src="@source" width="100%" align ="middle"/>
-        }
+        <p class="pic">
+    @{
+        string source = ImageCarousel.Models.ImageModel.randompath;
+        <img src="@source"/>
+    }
+</p>
     </div>
 </div>
