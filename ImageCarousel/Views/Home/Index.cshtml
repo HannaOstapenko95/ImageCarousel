@@ -12,10 +12,10 @@
 <div>
     <div>
         <p class="pic">
-    @{
-        string source = ImageCarousel.Models.ImageModel.randompath;
-        <img src="@source"/>
-    }
-</p>
+            @{
+                string source = ImageCarousel.Models.ImageModel.GetRandomImagePath();
+                <img class="cent" src="@source" vertical-align="middle" />
+            }
+        </p>
     </div>
 </div>
