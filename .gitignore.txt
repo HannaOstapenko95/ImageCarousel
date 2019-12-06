@@ -1,5 +1,5 @@
 *.sln
-packages/*
+/packages/*
 /bin/*
 /Content/*
 /fonts/*
