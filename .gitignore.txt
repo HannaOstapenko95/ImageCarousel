@@ -1,5 +1,12 @@
-.sln
-packages/
-bin/
-fonts/
-images/
+*.sln
+packages/*
+/bin/*
+/Content/*
+/fonts/*
+/images/*
+obj/
+Properties/
+Scripts/
+favicon.ico
+Web.Debug
+Web.Release
