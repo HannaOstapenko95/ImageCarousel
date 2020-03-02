@@ -29,11 +29,7 @@ namespace ImageCarousel.Models
         /// <returns></returns>
         public static string GetRandomImagePath()
         {
-            if (!new FileInfo(imagesNotShown).Exists)
-            {
-                ImageModel.CreateFileForStoringImagesList();
-            }
-
+            ImageModel.CreateFileForStoringImagesList();
             ImageModel.WriteImagesNamesInFile();
             int randomIndex = ImageModel.GetRandomIndex();
             string selectedImagePath = Convert.ToString(folderWithImages + ImageModel.GetRandomImageNameFromFile(randomIndex));
@@ -201,9 +197,11 @@ namespace ImageCarousel.Models
         /// <returns></returns>
         public static void CreateFileForStoringImagesList()
         {
-            var fileForStoringImagesList = File.Create(imagesNotShown);
-            fileForStoringImagesList.Close();
-
+            if (!new FileInfo(imagesNotShown).Exists)
+            {
+                var fileForStoringImagesList = File.Create(imagesNotShown);
+                fileForStoringImagesList.Close();
+            }
         }
     }
 }
