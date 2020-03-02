@@ -5,17 +5,34 @@
 @model ImageCarousel.Models.ImageModel
 
 <style>
-    .pic {
-        text-align: center; /* Выравнивания картинки по центру в html */
+    .resize {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        text-align: center;
+        margin: 0;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)   
     }
 </style>
 <div>
-    <div>
+    <div class="imgbox">
+        @*<p>
+            <a class="weatherwidget-io" href="https://forecast7.com/en/50d4530d52/kiev/" data-label_1="KYIV" data-label_2="WEATHER" data-font="Roboto" data-icons="Climacons Animated" data-theme="dark">KYIV WEATHER</a>
+            <script>
+                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+            </script>
+        </p>*@
+
         <p class="pic">
             @{
                 string source = ImageCarousel.Models.ImageModel.GetRandomImagePath();
-                <img class="cent" src="@source" vertical-align="middle" />
+                <img class="resize" src="@source"  height="100%"/>
             }
         </p>
-    </div>
+        @*<div style="font-size:16px;font-family:sans-serif,Arial,Helvetica;width:268px; line-height:24px;border:1px solid #2D6AB4;background-color:#F0F0F0;"><div style="background-color:#2D6AB4;height:24px; font-weight:bold;text-align:left;padding-top:3px; width:100%;"><span style="background-image:url(https://www.fxexchangerate.com/static/flag.png); background-position: 0 -2064px;float:left; margin:4px 0 0 20px; width:20px;height:15px; background-repeat:no-repeat;"></span><a style="color:#FFFFFF;padding-left:5px;text-decoration:none;" href="https://usd.fxexchangerate.com" rel="nofollow">United States Dollar</a></div>
+        <script type="text/javascript" src="https://w.fxexchangerate.com/converter.php?fm=USD&ft=EUR,GBP,JPY,RUB,UAH,&lg=en&am=1&ty=2"></script></div>*@
 </div>
